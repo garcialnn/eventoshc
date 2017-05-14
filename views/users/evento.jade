@@ -1,0 +1,17 @@
+extends ../templates/default
+
+block content
+  div.container
+    div.container
+      each item in datos
+        h1= 'Evento # ' + item.id
+        h3= 'Nombre:  ' + item.nombre 
+        - var fecha = moment(item.fechainicio).format('MM/DD/YYYY')
+        p= 'Fecha del evento: '+fecha
+        p= item.detalle
+        if isAuthenticated
+          form(method='post' autocomplete='off' action='../users/inscribir')
+            button(type="submit" class='btn btn-default')= 'Inscribir'
+        else
+          a(href="../auth/signin")
+            button(class='btn btn-danger')= 'Iniciar sesion para Inscribir'

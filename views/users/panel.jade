@@ -1,0 +1,20 @@
+extends ../templates/default
+
+block content
+  div.container
+    each item in resultados
+      div.col-lg-3.col-md-3.col-sm-6.col-xs-12
+        div.thumbnail
+          img(src="../../images/eventos.png" class="img-thumbnail" alt="Cinque Terre")
+          div.caption
+            h4= item.nombre
+            p ...
+            div.text-right
+              p
+                a(href="../users/evento" class="btn btn-danger" role="button")= item.id
+              form(method='post' autocomplete='off' action='../users/evento')
+                button(type="submit" class='btn btn-default' name='nevento' id='nevento' value=item.id)= 'Detalle'
+  if isAuthenticated
+    p= 'autenticado como: ' + user.nombre
+  else
+    p= 'no autenticado'
